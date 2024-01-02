@@ -1,0 +1,4 @@
+.pytest_cache/
+.__cache__/
+.vscode/
+ *.pth
