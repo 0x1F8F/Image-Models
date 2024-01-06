@@ -11,12 +11,12 @@ class MNIST_Class(nn.Module):
         super(MNIST_Class, self).__init__()
         self.fcl1 = nn.Linear(28 * 28, 512)
         self.fcl2 = nn.Linear(512, 10)
-        self.activate = nn.Sigmoid()
-        self.ot = nn.Softmax()
+        self.activate = nn.Softmax(dim=1)
+        self.ot = nn.Sigmoid()
 
     def forward(self, x: Tensor) -> Tensor:
         x = self.activate(self.fcl1(x.view(-1, 28 * 28)))
-        x = self.ot( self.fcl2(x) )
+        x = self.ot(self.fcl2(x))
         return x
 
 

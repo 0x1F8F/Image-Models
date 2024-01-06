@@ -1,9 +1,7 @@
+#!/bin/env python
+
 import gradio as gr
-
-# from gradio import component as grc
 import numpy as np
-
-# import plotly.express as ex
 from PIL import Image
 from loader import model, normalize
 from torchvision.transforms import PILToTensor
@@ -14,14 +12,13 @@ model.eval()
 
 
 def image_post_process(image: Image):
-    image: torch.Tensor = transforms(image).to(torch.float).div_(255)
-    print(image.unsqueeze(0).unsqueeze(0).shape)
-    print(image)
-    exit()
-    with torch.no_grad():
-        prediction: torch.Tensor = model(image)
+    if isinstance(image, Image.Image):
+        image: torch.Tensor = transforms(image).to(torch.float).div_(255)
+        with torch.no_grad():
+            prediction: torch.Tensor = model(image)
 
-    return dict(enumerate(prediction.view(-1).tolist()))
+        return dict(enumerate(prediction.view(-1).tolist()))
+    return {"display": 1.0}
 
 
 app = gr.Interface(
@@ -29,7 +26,7 @@ app = gr.Interface(
     title="HandDigit prediction",
     inputs=gr.Sketchpad(type="pil"),
     outputs=gr.Label(),
-    live=True
+    live=True,
 )
 
 app.launch(server_name="0.0.0.0", server_port=8080)

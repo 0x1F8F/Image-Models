@@ -57,7 +57,6 @@ for epoch in range(epochs):
     loss_ = []
 
 
-
 print("Saving model checkpoint ...")
 torch.save(model.state_dict(), model_path)
 torch.save(optimizer.state_dict(), optim_path)
