@@ -51,8 +51,8 @@ for epoch in range(epochs):
         optimizer.step()
 
         loss_.append(loss.item())
-        print(f"\rLoss: {loss_[-1] :.8f}   ", end="", flush=True)
-    print(f"\nAvg. Loss: { sum(loss_)/len(loss_) } @Epoch - { epoch }", flush=True)
+        print(f"\rLoss: {loss_[-1] :.4f}   ", end="", flush=True)
+    print(f"\nAvg. Loss: { sum(loss_)/len(loss_):.6f } \t@Epoch - { epoch }", flush=True)
     tloss_.extend(loss_)
     loss_ = []
 
@@ -65,5 +65,3 @@ plt.figure(figsize=(10, 25))
 plt.plot(tloss_[::500])
 plt.show()
 
-
-print(output)
