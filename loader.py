@@ -13,7 +13,7 @@ learning_rate = 1e-2
 
 model = MNIST_Class()
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.RMSprop(model.parameters() , lr=learning_rate)
+optimizer = optim.SGD(model.parameters() , lr=learning_rate)
 
 model.load_state_dict(torch.load(model_path))
 optimizer.load_state_dict(torch.load(optim_path))
