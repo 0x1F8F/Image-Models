@@ -11,7 +11,7 @@ import matplotlib.pylab as plt
 
 batch_size = 32
 learning_rate = 1e-3
-epochs = 10
+epochs = 50
 model_path = "./model.pth"
 optim_path = "./optim.pth"
 
