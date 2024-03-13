@@ -15,12 +15,14 @@ epochs = 50
 model_path = "./model.pth"
 optim_path = "./optim.pth"
 
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+torch.set_default_device(device=device)
 
 transforms = tf.ToTensor()
 
 
 train_data = datasets.MNIST(
-    root="../tmp-py/data/", train=True, transform=transforms, download=False
+    root="~/.cache/datasets/", train=True, transform=transforms, download=True
 )
 # test_data = datasets.MNIST(root="../tmp-py/data/", train=True, transform=transforms , download=False)
 loaded_data = DataLoader(dataset=train_data, batch_size=32, shuffle=True)
